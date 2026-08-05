@@ -1,65 +1,61 @@
 @startuml diagrama_MER
 
 entity Producto {
-
-* id_producto : INT <<PK>>
-
---
-
-nombre : VARCHAR(100)
-
-descripcion : TEXT
-
-unidad_medida : VARCHAR(20)
-
-precio : DECIMAL
-
-stock : INT
-
+  * id_producto : INT <<PK>>
+  --
+  nombre : VARCHAR(100)
+  descripcion : TEXT
+  unidad_medida : VARCHAR(20)
+  precio : DECIMAL
+  stock : INT
 }
 
 entity Proveedor {
-
-* id_proveedor : INT <<PK>>
-
---
-
-razon_social : VARCHAR(150)
-
-telefono : VARCHAR(20)
-
-correo : VARCHAR(100)
-
+  * id_proveedor : INT <<PK>>
+  --
+  razon_social : VARCHAR(150)
+  telefono : VARCHAR(20)
+  correo : VARCHAR(100)
 }
 
 entity Orden_Compra {
-
-* id_orden : INT <<PK>>
-
---
-
-fecha : DATE
-
-estado : VARCHAR(30)
-
+  * id_orden : INT <<PK>>
+  --
+  id_proveedor : INT <<FK>>
+  fecha : DATE
+  estado : VARCHAR(30)
 }
 
 entity Detalle_Orden {
+  * id_detalle : INT <<PK>>
+  --
+  id_orden : INT <<FK>>
+  id_producto : INT <<FK>>
+  cantidad : INT
+  precio_unitario : DECIMAL
+}
 
-* id_detalle : INT <<PK>>
+entity Recepcion {
+  * id_recepcion : INT <<PK>>
+  --
+  id_orden : INT <<FK>>
+  fecha_recepcion : DATE
+  observaciones : TEXT
+}
 
---
-
-cantidad : INT
-
-precio_unitario : DECIMAL
-
+entity Recepcion_Detalle {
+  * id_recepcion_detalle : INT <<PK>>
+  --
+  id_recepcion : INT <<FK>>
+  id_detalle : INT <<FK>>
+  cantidad_recibida : INT
 }
 
 Proveedor ||--o{ Orden_Compra
-
 Orden_Compra ||--o{ Detalle_Orden
-
 Producto ||--o{ Detalle_Orden
+Orden_Compra ||--o{ Recepcion
+Recepcion ||--o{ Recepcion_Detalle
+Detalle_Orden ||--o{ Recepcion_Detalle
 
 @enduml

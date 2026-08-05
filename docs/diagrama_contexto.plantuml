@@ -3,7 +3,9 @@
 
 title Diagrama de Contexto (C1) - Sistema ERP
 
-Person(adminCompras, "Administrador de Compras", "Gestiona productos, proveedores y órdenes de compra.")
+Person(gestorInventario, "Gestor de Inventario", "Registra y mantiene actualizado el catálogo de productos.")
+Person(adminCompras, "Administrador de Compras", "Gestiona proveedores y genera órdenes de compra.")
+Person(encargadoAlmacen, "Encargado de Almacén", "Registra la recepción de mercancía y actualiza el inventario.")
 Person(contador, "Contador", "Gestiona facturación y pagos.")
 Person(gerente, "Gerente", "Consulta indicadores y reportes ejecutivos.")
 
@@ -12,7 +14,9 @@ System(erp, "Sistema ERP", "Gestiona los procesos de compras, inventario, factur
 System_Ext(email, "Servicio de Correo", "Envía notificaciones.")
 System_Ext(contabilidad, "Sistema Contable", "Recibe información financiera.")
 
-Rel(adminCompras, erp, "Gestiona compras")
+Rel(gestorInventario, erp, "Registra productos")
+Rel(adminCompras, erp, "Gestiona proveedores y órdenes de compra")
+Rel(encargadoAlmacen, erp, "Registra recepción de mercancía")
 Rel(contador, erp, "Registra facturas y pagos")
 Rel(gerente, erp, "Consulta reportes")
 
