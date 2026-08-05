@@ -1,4 +1,4 @@
-@startuml name diagrama_MER
+@startuml diagrama_MER
 
 entity Producto {
 

@@ -1,4 +1,4 @@
-@startuml name diagrama_contexto
+@startuml diagrama_contexto
 !include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
 
 title Diagrama de Contexto (C1) - Sistema ERP

@@ -1,4 +1,4 @@
-@startuml name diagrama_secuencia
+@startuml diagrama_secuencia
 
 title Diagrama de Secuencia - Registrar Productos
 
