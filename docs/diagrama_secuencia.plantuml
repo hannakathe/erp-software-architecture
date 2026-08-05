@@ -2,7 +2,7 @@
 
 title Diagrama de Secuencia - Registrar Productos
 
-actor "Administrador de Compras" as admin
+actor "Gestor de Inventario" as admin
 
 participant "Aplicación Web" as web
 
