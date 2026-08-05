@@ -1,0 +1,49 @@
+@startuml name diagrama_secuencia
+
+title Diagrama de Secuencia - Registrar Productos
+
+actor "Administrador de Compras" as admin
+
+participant "Aplicación Web" as web
+
+participant "API REST" as api
+
+database "PostgreSQL" as db
+
+admin -> web : Completa formulario
+
+activate web
+
+web -> api : POST /productos
+
+activate api
+
+api -> api : Validar información
+
+alt Datos válidos
+
+api -> db : INSERT Producto
+
+activate db
+
+db --> api : Producto registrado
+
+deactivate db
+
+api --> web : 201 Created
+
+web --> admin : Producto registrado correctamente
+
+else Datos inválidos
+
+api --> web : Error de validación
+
+web --> admin : Mostrar mensaje de error
+
+end
+
+deactivate api
+
+deactivate web
+
+@enduml

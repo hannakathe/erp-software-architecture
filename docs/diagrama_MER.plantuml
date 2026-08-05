@@ -1,0 +1,65 @@
+@startuml name diagrama_MER
+
+entity Producto {
+
+* id_producto : INT <<PK>>
+
+--
+
+nombre : VARCHAR(100)
+
+descripcion : TEXT
+
+unidad_medida : VARCHAR(20)
+
+precio : DECIMAL
+
+stock : INT
+
+}
+
+entity Proveedor {
+
+* id_proveedor : INT <<PK>>
+
+--
+
+razon_social : VARCHAR(150)
+
+telefono : VARCHAR(20)
+
+correo : VARCHAR(100)
+
+}
+
+entity Orden_Compra {
+
+* id_orden : INT <<PK>>
+
+--
+
+fecha : DATE
+
+estado : VARCHAR(30)
+
+}
+
+entity Detalle_Orden {
+
+* id_detalle : INT <<PK>>
+
+--
+
+cantidad : INT
+
+precio_unitario : DECIMAL
+
+}
+
+Proveedor ||--o{ Orden_Compra
+
+Orden_Compra ||--o{ Detalle_Orden
+
+Producto ||--o{ Detalle_Orden
+
+@enduml

@@ -1,0 +1,28 @@
+@startuml diagrama_contenedores
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+title Diagrama de Contenedores (C2) - Sistema ERP
+
+Person(usuario, "Usuario ERP")
+
+System_Boundary(erp, "Sistema ERP") {
+
+Container(frontend, "Aplicación Web", "React", "Interfaz para usuarios del ERP.")
+
+Container(api, "API REST", "Spring Boot", "Gestiona toda la lógica del negocio.")
+
+ContainerDb(db, "Base de Datos", "PostgreSQL", "Almacena la información del ERP.")
+
+}
+
+System_Ext(email, "Servicio de Correo")
+
+Rel(usuario, frontend, "Usa", "HTTPS")
+
+Rel(frontend, api, "Solicita información", "HTTPS / JSON")
+
+Rel(api, db, "Lee y escribe", "JPA / JDBC")
+
+Rel(api, email, "Envía notificaciones")
+
+@enduml

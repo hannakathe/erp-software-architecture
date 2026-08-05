@@ -1,0 +1,22 @@
+@startuml name diagrama_contexto
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+
+title Diagrama de Contexto (C1) - Sistema ERP
+
+Person(adminCompras, "Administrador de Compras", "Gestiona productos, proveedores y órdenes de compra.")
+Person(contador, "Contador", "Gestiona facturación y pagos.")
+Person(gerente, "Gerente", "Consulta indicadores y reportes ejecutivos.")
+
+System(erp, "Sistema ERP", "Gestiona los procesos de compras, inventario, facturación, empleados y activos.")
+
+System_Ext(email, "Servicio de Correo", "Envía notificaciones.")
+System_Ext(contabilidad, "Sistema Contable", "Recibe información financiera.")
+
+Rel(adminCompras, erp, "Gestiona compras")
+Rel(contador, erp, "Registra facturas y pagos")
+Rel(gerente, erp, "Consulta reportes")
+
+Rel(erp, email, "Envía notificaciones")
+Rel(erp, contabilidad, "Sincroniza información contable")
+
+@enduml
